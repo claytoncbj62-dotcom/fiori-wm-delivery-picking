@@ -1,0 +1,71 @@
+<c:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:c="sap.ui.core"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:f="sap.f"
+>
+  <Dialog
+    showHeader="false"
+    verticalScrolling="false"
+    contentHeight="80%"
+    contentWidth="50%"
+  >
+    <f:DynamicPage
+      class="sapUiNoContentPadding"
+      showFooter="true"
+    >
+      <f:title>
+        <f:DynamicPageTitle>
+          <f:heading>
+            <Title text="{i18n>QtdDialogTitle}" />
+          </f:heading>
+        </f:DynamicPageTitle>
+      </f:title>
+      <f:content>
+        <form:SimpleForm
+          editable="true"
+          layout="ResponsiveGridLayout">
+          <c:Title text="{i18n>QtdSeparationTitle}" />
+          <VBox>
+            <Label text="{i18n>quantityLabel}" required="true" />
+            <Input
+              placeholder="{i18n>QtdDialogPlaceholder}"
+              value="{DetailsPageModel>/QtySend_AltUoM}"
+              valueState="{DetailsPageModel>/QtySendValueState}"
+              liveChange="onQtySendAltUoMInputLiveChange"
+              required="true"
+              width="65%"
+              type="Number" />
+            <Button
+              text="{i18n>QtyTotalButtonLabel}"
+              type="Neutral"
+              press="onSetTotalQuantityButtonPress"
+              width="35%"
+              class="sapUiTinyMarginTop" />
+          </VBox>
+          <VBox>
+            <Label text="{i18n>unitMeasureLabel}" />
+            <Text
+              text="{TOItemDetailsModel>/BaseUoM}"
+              class="sapUiTinyMarginBottom" />
+          </VBox>
+        </form:SimpleForm>
+      </f:content>
+      <f:footer>
+        <OverflowToolbar>
+          <ToolbarSpacer />
+          <Button
+            text="{i18n>ChangeQuantityButtonLabel}"
+            type="Emphasized"
+            press="onChangeQuantityButtonPress"
+          />
+          <Button
+            text="{i18n>closeButtonLabel}"
+            type="Transparent"
+            press="onQtyCloseButtonPress"
+          />
+        </OverflowToolbar>
+      </f:footer>
+    </f:DynamicPage>
+  </Dialog>
+</c:FragmentDefinition>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZI_CA_PARAM_CDS" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZI_CA_PARAMType" sap:label="Select parameters data" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="p_programm"/>
+                    <PropertyRef Name="Name"/>
+                    <PropertyRef Name="Type"/>
+                    <PropertyRef Name="Numb"/>
+                    <PropertyRef Name="Programm"/>
+                </Key>
+                <Property Name="p_programm" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Programmname"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Variablenname" sap:quickinfo="ABAP: Name der Variantenvariablen"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Art der Selektion" sap:quickinfo="ABAP/IV: Art der Selektion"/>
+                <Property Name="Numb" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Nummer" sap:quickinfo="ABAP: Fortlaufende Nummer der Selektion"/>
+                <Property Name="Programm" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Programmname" sap:quickinfo="ABAP-Programmname"/>
+                <Property Name="Sign" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="INCL/EXCL" sap:quickinfo="ABAP: Kennzeichen: I/E (Werte ein/ausschließen)"/>
+                <Property Name="Opti" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Option" sap:quickinfo="ABAP: Selektionsoption (EQ/BT/CP/...)"/>
+                <Property Name="Low" Type="Edm.String" MaxLength="255" sap:label="Feldwert" sap:quickinfo="Selektionsvariante: Feldinhalt (LOW/HIGH)"/>
+                <Property Name="High" Type="Edm.String" MaxLength="255" sap:label="Feldwert" sap:quickinfo="Selektionsvariante: Feldinhalt (LOW/HIGH)"/>
+                <Property Name="Is_active" Type="Edm.Boolean" sap:label="Aktivkennzeichen"/>
+                <NavigationProperty Name="Parameters" Relationship="ZI_CA_PARAM_CDS.assoc_E8F7C034C482246EC06EF5B7BA560408" FromRole="ToRole_assoc_E8F7C034C482246EC06EF5B7BA560408" ToRole="FromRole_assoc_E8F7C034C482246EC06EF5B7BA560408" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ZI_CA_PARAMParameters" sap:semantics="parameters" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="p_programm"/>
+                </Key>
+                <Property Name="p_programm" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:parameter="mandatory" sap:label="Programmname" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Set" Relationship="ZI_CA_PARAM_CDS.assoc_E8F7C034C482246EC06EF5B7BA560408" FromRole="FromRole_assoc_E8F7C034C482246EC06EF5B7BA560408" ToRole="ToRole_assoc_E8F7C034C482246EC06EF5B7BA560408"/>
+            </EntityType>
+            <Association Name="assoc_E8F7C034C482246EC06EF5B7BA560408" sap:content-version="1">
+                <End Type="ZI_CA_PARAM_CDS.ZI_CA_PARAMParameters" Multiplicity="1" Role="FromRole_assoc_E8F7C034C482246EC06EF5B7BA560408"/>
+                <End Type="ZI_CA_PARAM_CDS.ZI_CA_PARAMType" Multiplicity="*" Role="ToRole_assoc_E8F7C034C482246EC06EF5B7BA560408"/>
+            </Association>
+            <EntityContainer Name="ZI_CA_PARAM_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZI_CA_PARAMSet" EntityType="ZI_CA_PARAM_CDS.ZI_CA_PARAMType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ZI_CA_PARAM" EntityType="ZI_CA_PARAM_CDS.ZI_CA_PARAMParameters" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_E8F7C034C482246EC06EF5B7BA560408" Association="ZI_CA_PARAM_CDS.assoc_E8F7C034C482246EC06EF5B7BA560408" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZI_CA_PARAM" Role="FromRole_assoc_E8F7C034C482246EC06EF5B7BA560408"/>
+                    <End EntitySet="ZI_CA_PARAMSet" Role="ToRole_assoc_E8F7C034C482246EC06EF5B7BA560408"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <Annotations Target="ZI_CA_PARAM_CDS.ZI_CA_PARAM_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ZI_CA_PARAM_CDS.ZI_CA_PARAM_CDS_Entities/ZI_CA_PARAM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>p_programm</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="Parameters"/>
+                                    <PropertyValue Property="FilterRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Filterable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>p_programm</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://fcdestq51.de.faber-castell.local:8012/sap/opu/odata/sap/ZI_CA_PARAM_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://fcdestq51.de.faber-castell.local:8012/sap/opu/odata/sap/ZI_CA_PARAM_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

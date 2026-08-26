@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Dialog id="idDialog" title="Estoque" class="sapUiResponsiveContentPadding" draggable="true" resizable="true" contentWidth="900px">
+    <Table 
+           items="{path: 'ZI_WM_STOCK_CDS>/', filters: []}"
+           growing="true">
+      <columns>
+        <Column>
+          <Text text="UD"/>
+        </Column>
+        <Column>
+          <Text text="Lote"/>
+        </Column>
+        <Column hAlign="End">
+          <Text text="Qtde Disp."/>
+        </Column>
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <Text text="{ZI_WM_STOCK_CDS>StorageUnit}"/>
+            <Text text="{ZI_WM_STOCK_CDS>Batch}"/>
+            <!-- <ObjectNumber number="{ZI_WM_STOCK_CDS>AvailableQty}" unit="{ZI_WM_STOCK_CDS>UoM}"/> -->
+            <ObjectNumber  number="{
+                                    parts: [
+                                        'ZI_WM_STOCK_CDS>AvailableQty'
+                                    ],
+                                    formatter: '.formatter.formatQuantity'
+                                }" 
+            unit="{ZI_WM_STOCK_CDS>UoM}"/>
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+    <endButton>
+      <Button text="{i18n>CloseLabel}" press="onCloseButtonPress"/>
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

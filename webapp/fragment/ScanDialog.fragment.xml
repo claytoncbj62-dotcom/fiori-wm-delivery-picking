@@ -1,0 +1,46 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ndc="sap.ndc"
+>
+    <Dialog
+        id="idBarcodeDialog"
+        title="{i18n>barcodeDialogTitle}">
+        <content>
+            <form:SimpleForm
+                editable="true">
+                <VBox>
+                    <Label text="{i18n>barcodeLabel}" required="true" />
+                    <HBox>
+                        <Input
+                            id="idBarcodeInput"
+                            placeholder="{i18n>BarcodeScanPlaceholder}"
+                            required="true"
+                            submit="onButtonConfirmPress" />
+                        <ndc:BarcodeScannerButton
+                            id="idBarcodeScannerButton"
+                            scanSuccess="onBarcodeScannerButtonScanSuccess"
+                            scanFail="onBarcodeScannerButtonScanFail"
+                            inputLiveUpdate="onBarcodeScannerButtonInputLiveUpdate"
+                            dialogTitle="{i18n>barcodeScannerTitle}"
+                            disableBarcodeInputDialog="true"
+                            keepCameraScan="{/keepCameraScan}"
+                            class="sampleBarcodeScannerButtonWithZebraEB" />
+                    </HBox>
+                </VBox>
+            </form:SimpleForm>
+        </content>
+        <endButton>
+            <Button
+                text="{i18n>confirmButtonLabel}"
+                type="Emphasized"
+                press="onButtonConfirmPress" />
+        </endButton>
+        <beginButton>
+            <Button
+                text="{i18n>closeButtonLabel}"
+                press="onCloseButtonPress" />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

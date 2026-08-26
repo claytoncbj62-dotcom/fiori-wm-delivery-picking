@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZI_WM_STOCK_CDS" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZI_WM_BinType" sap:label="WM Storage Bin (LAGP)" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="StorageType"/>
+                    <PropertyRef Name="StorageBin"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Lagernummer" sap:quickinfo="Lagernummer/Lagerkomplex"/>
+                <Property Name="StorageType" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Lagertyp"/>
+                <Property Name="StorageBin" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Lagerplatz"/>
+                <Property Name="StorageSection" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Lagerbereich"/>
+                <Property Name="BlockReason" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Sperrgrund"/>
+                <Property Name="DynamicInd" Type="Edm.Boolean" sap:label="Dynamischer Platz" sap:quickinfo="Kennzeichen: Dynamischer Lagerplatz"/>
+                <Property Name="CurrentWeight" Type="Edm.Decimal" Precision="11" Scale="3" sap:label="Maximales Gewicht" sap:quickinfo="Tragfähigkeit des Lagerplatzes"/>
+                <Property Name="WeightUoM" Type="Edm.String" MaxLength="3" sap:label="Gewichtseinheit" sap:semantics="unit-of-measure"/>
+                <Property Name="MaxWeight" Type="Edm.Decimal" Precision="11" Scale="3" sap:label="Belegtes Gewicht" sap:quickinfo="Gewicht der Materialien auf dem Lagerplatz"/>
+                <Property Name="EmptyInd" Type="Edm.Boolean" sap:label="Leerkennzeichen" sap:quickinfo="Kennzeichen, ob der Platz leer ist"/>
+                <Property Name="FullInd" Type="Edm.Boolean" sap:label="Vollkennzeichen" sap:quickinfo="Kennzeichen, ob der Platz voll ist"/>
+                <Property Name="VerificationInd" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Verifikationsfeld" sap:quickinfo="Verifikationsfeld bei mobiler Datenerfassung"/>
+            </EntityType>
+            <EntityType Name="ZI_WM_STOCKType" sap:label="Stock 908" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="QuantNumber"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Lagernummer" sap:quickinfo="Lagernummer/Lagerkomplex"/>
+                <Property Name="QuantNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="Quant"/>
+                <Property Name="StorageType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Lagertyp"/>
+                <Property Name="StorageBin" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Lagerplatz"/>
+                <Property Name="StorageUnit" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Materialnummer"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Werk"/>
+                <Property Name="Batch" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Charge" sap:quickinfo="Chargennummer"/>
+                <Property Name="StockCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Bestandsqual." sap:quickinfo="Bestandsqualifikation im Lagerverwaltungssystem"/>
+                <Property Name="SpecialStock" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Sonderbestand" sap:quickinfo="Sonderbestandskennzeichen"/>
+                <Property Name="SpecialStockNo" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Sonderbest.Nr" sap:quickinfo="Sonderbestandsnummer"/>
+                <Property Name="UoM" Type="Edm.String" MaxLength="3" sap:label="Basismengeneinheit" sap:semantics="unit-of-measure"/>
+                <Property Name="TotalQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="UoM" sap:label="Gesamtbestand" sap:quickinfo="Gesamtmenge"/>
+                <Property Name="AvailableQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="UoM" sap:label="Verfügbarer Bestand"/>
+                <Property Name="InQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="UoM" sap:label="Einzulag. Bestand" sap:quickinfo="Einzulagernder Bestand"/>
+                <Property Name="OutQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="UoM" sap:label="Auszulag. Bestand" sap:quickinfo="Auszulagernde Menge"/>
+                <Property Name="ShelfLifeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Verfallsdatum/MHD" sap:quickinfo="Verfallsdatum oder Mindesthaltbarkeitsdatum"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Lagerort"/>
+                <NavigationProperty Name="to_Bin" Relationship="ZI_WM_STOCK_CDS.assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6" FromRole="FromRole_assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6" ToRole="ToRole_assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6"/>
+            </EntityType>
+            <Association Name="assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6" sap:content-version="1">
+                <End Type="ZI_WM_STOCK_CDS.ZI_WM_STOCKType" Multiplicity="1" Role="FromRole_assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6"/>
+                <End Type="ZI_WM_STOCK_CDS.ZI_WM_BinType" Multiplicity="0..1" Role="ToRole_assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6"/>
+            </Association>
+            <EntityContainer Name="ZI_WM_STOCK_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZI_WM_Bin" EntityType="ZI_WM_STOCK_CDS.ZI_WM_BinType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZI_WM_STOCK" EntityType="ZI_WM_STOCK_CDS.ZI_WM_STOCKType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6" Association="ZI_WM_STOCK_CDS.assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZI_WM_STOCK" Role="FromRole_assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6"/>
+                    <End EntitySet="ZI_WM_Bin" Role="ToRole_assoc_9E1F11FAF4FBAFA0C05CF4E0098FB8D6"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <Annotations Target="ZI_WM_STOCK_CDS.ZI_WM_STOCK_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ZI_WM_STOCK_CDS.ZI_WM_STOCK_CDS_Entities/ZI_WM_STOCK" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Bin"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://fcdestq51.de.faber-castell.local:8012/sap/opu/odata/sap/ZI_WM_STOCK_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://fcdestq51.de.faber-castell.local:8012/sap/opu/odata/sap/ZI_WM_STOCK_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

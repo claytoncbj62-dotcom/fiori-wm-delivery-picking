@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zfc.wm.zwmpicking
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - url: http://fcdestd51.de.faber-castell.local:8010
+            client: '010'
+            path: /sap
+          - url: http://fcdestq51.de.faber-castell.local:8012
+            client: '010'
+            path: /sap/opu/odata/sap/ZI_WM_STOCK_CDS/
+          - url: http://fcdestq51.de.faber-castell.local:8012
+            client: '010'
+            path: /sap/opu/odata/sap/ZUI_WM_PICK_CONF_O2/
+          - url: http://fcdestq51.de.faber-castell.local:8012
+            client: '010'
+            path: /sap/opu/odata/sap/ZI_CA_PARAM_CDS/
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: zfc.wm.zwmpicking
+        ui5Theme: sap_horizon

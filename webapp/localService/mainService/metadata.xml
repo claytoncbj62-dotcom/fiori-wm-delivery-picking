@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri=".12/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZC_WM_TOITEM_GROUP_PICKING_CDS" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZC_WM_TOITEM_GROUP_PICKINGType" sap:label="WM TO - Groups" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PurchaseOrder"/>
+                    <PropertyRef Name="StorageUnit"/>
+                    <PropertyRef Name="TransferCat"/>
+                    <PropertyRef Name="Processo"/>
+                    <PropertyRef Name="IsFractional"/>
+                    <PropertyRef Name="CollectiveProcessing"/>
+                </Key>
+                <Property Name="PurchaseOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Bedarfsnummer"/>
+                <Property Name="StorageUnit" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="TransferCat" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Transportart"/>
+                <Property Name="Processo" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="IsFractional" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="CollectiveProcessing" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Gruppe"/>
+                <Property Name="ItemCount" Type="Edm.Int32"/>
+                <Property Name="WarehouseText" Type="Edm.String" MaxLength="40" sap:label="TB-Kopftext" sap:quickinfo="Kopftext des Transportbedarfs"/>
+                <Property Name="TOType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Bedarfstyp"/>
+                <NavigationProperty Name="toto_Items" Relationship="ZC_WM_TOITEM_GROUP_PICKING_CDS.assoc_67B66CF14F01B58899D296AC7B399ACF" FromRole="FromRole_assoc_67B66CF14F01B58899D296AC7B399ACF" ToRole="ToRole_assoc_67B66CF14F01B58899D296AC7B399ACF"/>
+            </EntityType>
+            <EntityType Name="ZI_VH_WarehouseType" sap:label="VH Warehouse" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Lagernummer" sap:quickinfo="Lagernummer/Lagerkomplex"/>
+                <Property Name="WarehouseName" Type="Edm.String" MaxLength="25" sap:label="LNr-Bezeichnung" sap:quickinfo="Bezeichnung der Lagernummer"/>
+            </EntityType>
+            <EntityType Name="ZI_WM_Shipment_TypesType" sap:label="Shipment Types" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TransferCat"/>
+                </Key>
+                <Property Name="TransferCat" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Transportart"/>
+                <Property Name="L2skr" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="2-stufige Kommi" sap:quickinfo="Relevanz für 2-stufige Kommissionierung"/>
+            </EntityType>
+            <EntityType Name="ZI_WM_TOItemType" sap:label="WM Transfer Order - Item (LTAP)" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TransferOrder"/>
+                    <PropertyRef Name="Item"/>
+                </Key>
+                <Property Name="CheckBarcode_ac" Type="Edm.Boolean" sap:label="Dyn. Aktions-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CloseTO_ac" Type="Edm.Boolean" sap:label="Dyn. Aktions-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConfirmPick_ac" Type="Edm.Boolean" sap:label="Dyn. Aktions-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConfirmPickTransf_ac" Type="Edm.Boolean" sap:label="Dyn. Aktions-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConfirmTransportTotal_ac" Type="Edm.Boolean" sap:label="Dyn. Aktions-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConfirmTransportVolume_ac" Type="Edm.Boolean" sap:label="Dyn. Aktions-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidateMaterial_ac" Type="Edm.Boolean" sap:label="Dyn. Aktions-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidateQuantity_ac" Type="Edm.Boolean" sap:label="Dyn. Aktions-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidateStorage_ac" Type="Edm.Boolean" sap:label="Dyn. Aktions-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Lagernummer" sap:quickinfo="Lagernummer/Lagerkomplex" sap:value-list="standard"/>
+                <Property Name="TransferOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="TA-Nummer" sap:quickinfo="Transportauftragsnummer"/>
+                <Property Name="Item" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="TA-Position" sap:quickinfo="Transportauftragsposition"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Werk"/>
+                <Property Name="Batch" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Charge" sap:quickinfo="Chargennummer"/>
+                <Property Name="StockCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Bestandsqual." sap:quickinfo="Bestandsqualifikation im Lagerverwaltungssystem"/>
+                <Property Name="SpecialStock" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Sonderbestand" sap:quickinfo="Sonderbestandskennzeichen"/>
+                <Property Name="SpecialStockNo" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Sonderbest.Nr" sap:quickinfo="Sonderbestandsnummer"/>
+                <Property Name="BaseUoM" Type="Edm.String" MaxLength="3" sap:label="Basismengeneinheit" sap:semantics="unit-of-measure"/>
+                <Property Name="AltUoM" Type="Edm.String" MaxLength="3" sap:label="Alt.Mengeneinh." sap:quickinfo="Alternativmengeneinheit zur Lagermengeneinheit" sap:semantics="unit-of-measure"/>
+                <Property Name="UMNumerator" Type="Edm.Decimal" Precision="5" Scale="0" sap:label="Zähler" sap:quickinfo="Zähler für die Umrechnung in Basismengeneinheiten"/>
+                <Property Name="UMDenominator" Type="Edm.Decimal" Precision="5" Scale="0" sap:label="Nenner" sap:quickinfo="Nenner für die Umrechnung in Basismengeneinheiten"/>
+                <Property Name="SourceStorageType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Vonlagertyp"/>
+                <Property Name="SourceSection" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Vonlagerbereich"/>
+                <Property Name="SourceBin" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Vonlagerplatz"/>
+                <Property Name="SourceSU" Type="Edm.String" MaxLength="20"/>
+                <Property Name="DestStorageType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Nachlagertyp"/>
+                <Property Name="DestSection" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Nachlagerbereich"/>
+                <Property Name="DestBin" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Nachlagerplatz"/>
+                <Property Name="DestSU" Type="Edm.String" MaxLength="20"/>
+                <Property Name="QtyToMove_BaseUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="BaseUoM" sap:label="Sollmenge Von" sap:quickinfo="Von-Sollmenge in Lagermengeneinheit"/>
+                <Property Name="QtyPicked_BaseUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="BaseUoM" sap:label="Istmenge Von" sap:quickinfo="Von-Istmenge in Lagermengeneinheit"/>
+                <Property Name="QtyDiff_BaseUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="BaseUoM" sap:label="Inventurdiff. Von" sap:quickinfo="Differenz auf dem Vonlagerplatz in Lagermengeneinheit"/>
+                <Property Name="QtyToMove_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Sollmenge Von" sap:quickinfo="Von-Sollmenge in alternativer Mengeneinheit"/>
+                <Property Name="QtyPicked_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Istmenge Von" sap:quickinfo="Von-Istmenge in alternativer Mengeneinheit"/>
+                <Property Name="QtyDiff_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Differenz Menge Von" sap:quickinfo="Differenz auf dem Vonlagerplatz in alt. Mengeneinheit"/>
+                <Property Name="QtyPlannedDest_BaseUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="BaseUoM" sap:label="Sollmenge Nach" sap:quickinfo="Nach-Sollmenge in Lagermengeneinheit"/>
+                <Property Name="QtyActualDest_BaseUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="BaseUoM" sap:label="Istmenge Nach" sap:quickinfo="Nach-Istmenge in Lagermengeneinheit"/>
+                <Property Name="QtyDiffDest_BaseUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="BaseUoM" sap:label="Differenz Mng Nach" sap:quickinfo="Nach-Differenzmenge in Lagermengeneinheit"/>
+                <Property Name="QtyPlannedDest_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Sollmenge Nach" sap:quickinfo="Nach-Sollmenge in alternativer Mengeneinheit"/>
+                <Property Name="QtyOpenDest_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Istmenge Nach" sap:quickinfo="Nach-Istmenge in alternativer Mengeneinheit"/>
+                <Property Name="QtyDiffDest_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Differenz Menge Nach" sap:quickinfo="Nach-Differenzmenge in alternativer Mengeneinheit"/>
+                <Property Name="RemStorageType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Rücklagertyp"/>
+                <Property Name="RemSection" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Rücklagerbereich"/>
+                <Property Name="RemBin" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Rücklagerplatz"/>
+                <Property Name="RemItemPos" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Platzposition Rück" sap:quickinfo="Position auf dem Rücklagerplatz"/>
+                <Property Name="RemQty_BaseUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="BaseUoM" sap:label="Sollmenge Rück" sap:quickinfo="Rück-Sollmenge in Lagermengeneinheit"/>
+                <Property Name="RemQtyActual_BaseUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="BaseUoM" sap:label="Istmenge Rück" sap:quickinfo="Rück-Istmenge in Lagermengeneinheit"/>
+                <Property Name="RemQtyDiff_BaseUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="BaseUoM" sap:label="Differenz Mng Rück" sap:quickinfo="Rück-Differenzmenge in Lagermengeneinheit"/>
+                <Property Name="RemQty_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Sollmenge Rück" sap:quickinfo="Rück-Sollmenge in alternativer Mengeneinheit"/>
+                <Property Name="RemQtyActual_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Istmenge Rück" sap:quickinfo="Rück-Istmenge in alternativer Mengeneinheit"/>
+                <Property Name="RemQtyDiff_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Differenz Menge Rück" sap:quickinfo="Rück-Differenzmenge in alternativer Mengeneinheit"/>
+                <Property Name="DeassignedSU" Type="Edm.String" MaxLength="20"/>
+                <Property Name="DiffIndicator" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Differenzen Kennz." sap:quickinfo="Differenzenkennzeichen"/>
+                <Property Name="ConfirmedInd" Type="Edm.Boolean" sap:label="Quittierungspflicht" sap:quickinfo="Kennzeichen: Quittierungspflichtig"/>
+                <Property Name="InventoryInd" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Inventurart" sap:quickinfo="Inventurkennzeichen"/>
+                <Property Name="MaterialShortText" Type="Edm.String" MaxLength="40" sap:label="Materialkurztext"/>
+                <Property Name="Volume" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="VolumeUoM" sap:label="Volumen"/>
+                <Property Name="VolumeUoM" Type="Edm.String" MaxLength="3" sap:label="Volumeneinheit" sap:semantics="unit-of-measure"/>
+                <Property Name="TimeQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="TimeUoM" sap:label="Wirkstoffmenge" sap:quickinfo="Transportierte Wirkstoffmenge"/>
+                <Property Name="TimeUoM" Type="Edm.String" MaxLength="3" sap:label="Wirkstoffmengeneinh." sap:quickinfo="Wirkstoffmengeneinheit" sap:semantics="unit-of-measure"/>
+                <Property Name="EntryDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Quittierungsdatum" sap:quickinfo="Datum der Quittierung Entnahme (erster Schritt)"/>
+                <Property Name="EntryTime" Type="Edm.Time" Precision="0" sap:label="Quittierungszeit" sap:quickinfo="Uhrzeit der Quittierung Entnahme (erster Schritt)"/>
+                <Property Name="EnteredBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Benutzer" sap:quickinfo="Benutzername der Entnahmequittierung (erster Schritt)"/>
+                <Property Name="GrossWeight" Type="Edm.Decimal" Precision="11" Scale="3" sap:label="Gewicht" sap:quickinfo="Bruttogewicht der Transportauftragsposition"/>
+                <Property Name="TransferItem" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="TB-Position" sap:quickinfo="Transportbedarfsposition"/>
+                <Property Name="UnloadingPoint" Type="Edm.String" MaxLength="25" sap:label="Abladestelle"/>
+                <Property Name="Confirmation" Type="Edm.Boolean" sap:label="Quittierung" sap:quickinfo="Kennzeichen: Quittierung der Materialentnahme ist erfolgt"/>
+                <Property Name="SUType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Lagereinheitentyp"/>
+                <Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Lagerort"/>
+                <Property Name="PqConfirmation" Type="Edm.Boolean" sap:label="Quittierung" sap:quickinfo="Kennzeichen: Quittierung erfolgt"/>
+                <Property Name="ExpirationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Verfallsdatum/MHD" sap:quickinfo="Verfallsdatum oder Mindesthaltbarkeitsdatum"/>
+                <Property Name="SalesDoc" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Lieferung"/>
+                <Property Name="TOReason" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="TB-Nummer" sap:quickinfo="Transportbedarfsnummer"/>
+                <Property Name="TransferCat" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Transportart" sap:value-list="standard"/>
+                <Property Name="Queue" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Queue"/>
+                <Property Name="Delivery" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Vertriebsbeleg" sap:quickinfo="Vertriebsbelegnummer"/>
+                <Property Name="SeparateConf" Type="Edm.Boolean" sap:label="separate Quittierung" sap:quickinfo="Kennzeichen: Getrennte Quittierung möglich"/>
+                <Property Name="ReqNumber" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Bedarfsnummer"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Erstellungsdatum" sap:quickinfo="Erstellungsdatum des Transportauftrags"/>
+                <Property Name="UserStorage_Warehouse" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Lagernummer" sap:quickinfo="Lagernummer/Lagerkomplex"/>
+                <Property Name="Reservation" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Reservierung" sap:quickinfo="Nummer der Reservierung / des Sekundärbedarfs"/>
+                <Property Name="TOType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Bedarfstyp"/>
+                <Property Name="MvTyReplenishment" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="BWA lagerint.Nachs." sap:quickinfo="WM-Bewegungsart für lagerinternen Nachschub"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Bedarfsnummer"/>
+                <Property Name="StorageUnit" Type="Edm.String" MaxLength="4"/>
+                <Property Name="Processo" Type="Edm.String" MaxLength="12"/>
+                <Property Name="IsPicking" Type="Edm.Boolean"/>
+                <Property Name="Fractional" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Einlagerstrategie" sap:quickinfo="Einlagerungsstrategie"/>
+                <Property Name="IsFractional" Type="Edm.Boolean"/>
+                <Property Name="IsTransport" Type="Edm.Boolean"/>
+                <Property Name="IsPSA" Type="Edm.Boolean"/>
+                <Property Name="ShowQtyBtn" Type="Edm.Boolean"/>
+                <Property Name="QtySend_AltUoM" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="AltUoM" sap:label="Sollmenge Von" sap:quickinfo="Von-Sollmenge in alternativer Mengeneinheit"/>
+                <Property Name="QtyPending_BaseUoM" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="BaseUoM"/>
+                <Property Name="UICT_QtyCrit" Type="Edm.Byte"/>
+                <Property Name="UICT_PendingCrit" Type="Edm.Byte"/>
+            </EntityType>
+            <ComplexType Name="ZswmBcScanReq">
+                <Property Name="Code" Type="Edm.String" MaxLength="80"/>
+                <Property Name="IsRegisteredWarehouse" Type="Edm.Boolean" sap:label="boolsche Variable (X=true, -=false, space=unknown)"/>
+                <Property Name="Quantity" Type="Edm.Decimal" Precision="13" Scale="0"/>
+                <Property Name="Uom" Type="Edm.String" MaxLength="3" sap:label="Basismengeneinheit" sap:semantics="unit-of-measure"/>
+                <Property Name="Isvalidatematerial" Type="Edm.Boolean" sap:label="boolsche Variable (X=true, -=false, space=unknown)"/>
+                <Property Name="Isvalidatequantity" Type="Edm.Boolean" sap:label="boolsche Variable (X=true, -=false, space=unknown)"/>
+            </ComplexType>
+            <ComplexType Name="ZswmBcConfirmpickOut">
+                <Property Name="IsValidateStorageBin" Type="Edm.String" MaxLength="1"/>
+            </ComplexType>
+            <ComplexType Name="ZswmBcValidatematerial">
+                <Property Name="MaterialCode" Type="Edm.String" MaxLength="80"/>
+            </ComplexType>
+            <ComplexType Name="ZswmBcValidatequantity">
+                <Property Name="Code" Type="Edm.String" MaxLength="80"/>
+                <Property Name="Quantity" Type="Edm.Decimal" Precision="13" Scale="0"/>
+                <Property Name="Uom" Type="Edm.String" MaxLength="3" sap:label="Basismengeneinheit" sap:semantics="unit-of-measure"/>
+            </ComplexType>
+            <Association Name="assoc_67B66CF14F01B58899D296AC7B399ACF" sap:content-version="1">
+                <End Type="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZC_WM_TOITEM_GROUP_PICKINGType" Multiplicity="1" Role="FromRole_assoc_67B66CF14F01B58899D296AC7B399ACF"/>
+                <End Type="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" Multiplicity="*" Role="ToRole_assoc_67B66CF14F01B58899D296AC7B399ACF"/>
+            </Association>
+            <EntityContainer Name="ZC_WM_TOITEM_GROUP_PICKING_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZC_WM_TOITEM_GROUP_PICKING" EntityType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZC_WM_TOITEM_GROUP_PICKINGType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZI_VH_Warehouse" EntityType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_VH_WarehouseType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZI_WM_Shipment_Types" EntityType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_Shipment_TypesType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZI_WM_TOItem" EntityType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_67B66CF14F01B58899D296AC7B399ACF" Association="ZC_WM_TOITEM_GROUP_PICKING_CDS.assoc_67B66CF14F01B58899D296AC7B399ACF" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZC_WM_TOITEM_GROUP_PICKING" Role="FromRole_assoc_67B66CF14F01B58899D296AC7B399ACF"/>
+                    <End EntitySet="ZI_WM_TOItem" Role="ToRole_assoc_67B66CF14F01B58899D296AC7B399ACF"/>
+                </AssociationSet>
+                <FunctionImport Name="CheckBarcode" ReturnType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZswmBcScanReq" m:HttpMethod="POST" sap:action-for="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:applicable-path="CheckBarcode_ac">
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Lagernummer"/>
+                    <Parameter Name="TransferOrder" Type="Edm.String" Mode="In" MaxLength="10" sap:label="TA-Nummer"/>
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" MaxLength="4" sap:label="TA-Position"/>
+                    <Parameter Name="Code" Type="Edm.String" Mode="In" MaxLength="80"/>
+                    <Parameter Name="Quantity" Type="Edm.Decimal" Mode="In" Precision="13" Scale="0"/>
+                    <Parameter Name="Uom" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Basismengeneinheit"/>
+                </FunctionImport>
+                <FunctionImport Name="CloseTO" ReturnType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZswmBcConfirmpickOut" m:HttpMethod="POST" sap:action-for="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:applicable-path="CloseTO_ac">
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Lagernummer"/>
+                    <Parameter Name="TransferOrder" Type="Edm.String" Mode="In" MaxLength="10" sap:label="TA-Nummer"/>
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" MaxLength="4" sap:label="TA-Position"/>
+                </FunctionImport>
+                <FunctionImport Name="ConfirmPick" ReturnType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZswmBcConfirmpickOut" m:HttpMethod="POST" sap:action-for="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:applicable-path="ConfirmPick_ac">
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Lagernummer"/>
+                    <Parameter Name="TransferOrder" Type="Edm.String" Mode="In" MaxLength="10" sap:label="TA-Nummer"/>
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" MaxLength="4" sap:label="TA-Position"/>
+                    <Parameter Name="Barcode" Type="Edm.String" Mode="In" MaxLength="80"/>
+                    <Parameter Name="Quantity" Type="Edm.Decimal" Mode="In" Precision="13" Scale="3"/>
+                    <Parameter Name="Uom" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Basismengeneinheit"/>
+                    <Parameter Name="Isfracionado" Type="Edm.String" Mode="In" MaxLength="1"/>
+                </FunctionImport>
+                <FunctionImport Name="ConfirmPickTransf" ReturnType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" EntitySet="ZI_WM_TOItem" m:HttpMethod="POST" sap:action-for="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:applicable-path="ConfirmPickTransf_ac">
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Lagernummer"/>
+                    <Parameter Name="TransferOrder" Type="Edm.String" Mode="In" MaxLength="10" sap:label="TA-Nummer"/>
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" MaxLength="4" sap:label="TA-Position"/>
+                    <Parameter Name="Barcode" Type="Edm.String" Mode="In" MaxLength="80"/>
+                    <Parameter Name="Quantity" Type="Edm.Decimal" Mode="In" Precision="13" Scale="3"/>
+                    <Parameter Name="Uom" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Basismengeneinheit"/>
+                    <Parameter Name="Isfracionado" Type="Edm.String" Mode="In" MaxLength="1"/>
+                </FunctionImport>
+                <FunctionImport Name="ConfirmTransportTotal" ReturnType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" EntitySet="ZI_WM_TOItem" m:HttpMethod="POST" sap:action-for="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:applicable-path="ConfirmTransportTotal_ac">
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Lagernummer"/>
+                    <Parameter Name="TransferOrder" Type="Edm.String" Mode="In" MaxLength="10" sap:label="TA-Nummer"/>
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" MaxLength="4" sap:label="TA-Position"/>
+                    <Parameter Name="Quantity" Type="Edm.Decimal" Mode="In" Precision="13" Scale="3"/>
+                    <Parameter Name="Uom" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Basismengeneinheit"/>
+                </FunctionImport>
+                <FunctionImport Name="ConfirmTransportVolume" ReturnType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" EntitySet="ZI_WM_TOItem" m:HttpMethod="POST" sap:action-for="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:applicable-path="ConfirmTransportVolume_ac">
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Lagernummer"/>
+                    <Parameter Name="TransferOrder" Type="Edm.String" Mode="In" MaxLength="10" sap:label="TA-Nummer"/>
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" MaxLength="4" sap:label="TA-Position"/>
+                    <Parameter Name="Quantity" Type="Edm.Decimal" Mode="In" Precision="13" Scale="3"/>
+                    <Parameter Name="Uom" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Basismengeneinheit"/>
+                    <Parameter Name="Barcode" Type="Edm.String" Mode="In" MaxLength="50" sap:label="Kommentar"/>
+                </FunctionImport>
+                <FunctionImport Name="ValidateMaterial" ReturnType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZswmBcValidatematerial" m:HttpMethod="POST" sap:action-for="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:applicable-path="ValidateMaterial_ac">
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Lagernummer"/>
+                    <Parameter Name="TransferOrder" Type="Edm.String" Mode="In" MaxLength="10" sap:label="TA-Nummer"/>
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" MaxLength="4" sap:label="TA-Position"/>
+                    <Parameter Name="MaterialCode" Type="Edm.String" Mode="In" MaxLength="80"/>
+                </FunctionImport>
+                <FunctionImport Name="ValidateQuantity" ReturnType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZswmBcValidatequantity" m:HttpMethod="POST" sap:action-for="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:applicable-path="ValidateQuantity_ac">
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Lagernummer"/>
+                    <Parameter Name="TransferOrder" Type="Edm.String" Mode="In" MaxLength="10" sap:label="TA-Nummer"/>
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" MaxLength="4" sap:label="TA-Position"/>
+                    <Parameter Name="Code" Type="Edm.String" Mode="In" MaxLength="80"/>
+                    <Parameter Name="Quantity" Type="Edm.Decimal" Mode="In" Precision="13" Scale="0"/>
+                    <Parameter Name="Uom" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Basismengeneinheit"/>
+                </FunctionImport>
+                <FunctionImport Name="ValidateStorage" ReturnType="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" EntitySet="ZI_WM_TOItem" m:HttpMethod="POST" sap:action-for="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType" sap:applicable-path="ValidateStorage_ac">
+                    <Parameter Name="Warehouse" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Lagernummer"/>
+                    <Parameter Name="TransferOrder" Type="Edm.String" Mode="In" MaxLength="10" sap:label="TA-Nummer"/>
+                    <Parameter Name="Item" Type="Edm.String" Mode="In" MaxLength="4" sap:label="TA-Position"/>
+                    <Parameter Name="Quantity" Type="Edm.Decimal" Mode="In" Precision="13" Scale="0"/>
+                    <Parameter Name="Uom" Type="Edm.String" Mode="In" MaxLength="3" sap:label="Basismengeneinheit"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <Annotations Target="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType/Warehouse" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="VH Warehouse"/>
+                        <PropertyValue Property="CollectionPath" String="ZI_VH_Warehouse"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Warehouse"/>
+                                    <PropertyValue Property="ValueListProperty" String="Warehouse"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="WarehouseName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZI_WM_TOItemType/TransferCat" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Shipment Types"/>
+                        <PropertyValue Property="CollectionPath" String="ZI_WM_Shipment_Types"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="TransferCat"/>
+                                    <PropertyValue Property="ValueListProperty" String="TransferCat"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="L2skr"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZC_WM_TOITEM_GROUP_PICKING_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZC_WM_TOITEM_GROUP_PICKING_CDS_Entities/ZI_WM_TOItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>CheckBarcode_ac</PropertyPath>
+                                <PropertyPath>CloseTO_ac</PropertyPath>
+                                <PropertyPath>ConfirmPick_ac</PropertyPath>
+                                <PropertyPath>ConfirmPickTransf_ac</PropertyPath>
+                                <PropertyPath>ConfirmTransportTotal_ac</PropertyPath>
+                                <PropertyPath>ConfirmTransportVolume_ac</PropertyPath>
+                                <PropertyPath>ValidateMaterial_ac</PropertyPath>
+                                <PropertyPath>ValidateQuantity_ac</PropertyPath>
+                                <PropertyPath>ValidateStorage_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>CheckBarcode_ac</PropertyPath>
+                                <PropertyPath>CloseTO_ac</PropertyPath>
+                                <PropertyPath>ConfirmPick_ac</PropertyPath>
+                                <PropertyPath>ConfirmPickTransf_ac</PropertyPath>
+                                <PropertyPath>ConfirmTransportTotal_ac</PropertyPath>
+                                <PropertyPath>ConfirmTransportVolume_ac</PropertyPath>
+                                <PropertyPath>ValidateMaterial_ac</PropertyPath>
+                                <PropertyPath>ValidateQuantity_ac</PropertyPath>
+                                <PropertyPath>ValidateStorage_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZC_WM_TOITEM_GROUP_PICKING_CDS.ZC_WM_TOITEM_GROUP_PICKING_CDS_Entities/ZC_WM_TOITEM_GROUP_PICKING" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="toto_Items"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://fcdestq51.de.faber-castell.local:8012/sap/opu/odata/sap/ZC_WM_TOITEM_GROUP_PICKING_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://fcdestq51.de.faber-castell.local:8012/sap/opu/odata/sap/ZC_WM_TOITEM_GROUP_PICKING_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

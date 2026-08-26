@@ -1,0 +1,107 @@
+<mvc:View controllerName="zfc.wm.zwmpicking.controller.TOItemGroupList"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+>
+    <f:DynamicPage
+        id="idDynamicPage"
+        fitContent="true"
+        showFooter="true"
+    >
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>title}" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader>
+                <f:content>
+                    <fb:FilterBar id="idFilterBar" persistencyKey="myPersKey" useToolbar="false"
+                        search="onFilterBarSearch"
+                        filterChange="onFilterBarFilterChange"
+                        afterVariantLoad="onFilterBarAfterVariantLoad">
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem name="Processo" label="{i18n>processoLabel}"
+                                groupName="Group1"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <MultiComboBox
+                                        name="Processo"
+                                        selectionChange="onProcessoCollectionMultiComboBoxSelectionChange"
+                                        items="{
+												path: 'ProcessoF4Model>/ProcessoCollection',
+												templateShareable: true
+											}"
+                                    >
+                                        <core:Item key="{ProcessoF4Model>key}"
+                                            text="{ProcessoF4Model>name}" />
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="PurchaseOrderSeql" label="{i18n>benumLabel}"
+                                groupName="Group1"
+                                visibleInFilterBar="true">
+                                <fb:control>
+                                    <Input />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table
+                id="idTOItemGroupTable"
+                headerText="{i18n>itensGroupsLabel}"
+                growing="true"
+                items="{
+                    path: 'TOItemGroupModel>/',
+                    filters: [],
+                    sorter: [
+                        {path: 'StorageUnit', ascending: true},
+                        {path: 'PurchaseOrderSeql', ascending: true}
+                        
+                    ]
+                }">
+
+                <columns>
+                    <Column sortIndicator="Ascending" >
+                        <Text text="{i18n>benumLabel}"  />
+                    </Column>
+                    <Column minScreenWidth="Tablet"
+                    demandPopin="true" sortIndicator="Ascending">
+                        <Text text="{i18n>agrupArmazemLabel}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>trartLabel}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>processoLabel}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>itemCountLabel}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle" type="Navigation" press="onColumnListItemPress">
+                        <cells>
+                            <!-- <Text text="{TOItemGroupModel>PurchaseOrder}" wrapping="false" /> -->
+                            <Text text="{TOItemGroupModel>PurchaseOrderSeql}" wrapping="false" />
+                            <Text text="{TOItemGroupModel>StorageUnit}"  wrapping="false"/>
+                            <Text text="{TOItemGroupModel>TransferCat}"  wrapping="false"/>
+                            <Text text="{TOItemGroupModel>Processo}" wrapping="false" />
+                            <Text text="{TOItemGroupModel>ItemCount}" wrapping="false" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+        <f:footer>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

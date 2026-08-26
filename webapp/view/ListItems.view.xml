@@ -1,0 +1,61 @@
+<mvc:View controllerName="zfc.wm.zwmpicking.controller.ListItems"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f" height="100%">
+    <f:DynamicPage id="idReservationItemsDynamicPage" fitContent="true" busy="{reservationItemsModel>/busy}">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>PositionListTitle}"/>
+                </f:heading>
+                <f:actions>
+                    <Button icon="sap-icon://nav-back" text="{i18n>backButtonLabel}" press="onBackButtonPress" type="Transparent"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader>
+                <FlexBox wrap="Wrap" alignItems="Start">
+                </FlexBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table id="idItemsCollectionTable" mode="None" headerText="{i18n>PositionListTitle}" growing="true" items="{path: 'ListItemsModel>/'}">
+                <columns>
+                    <Column >
+                        <Text text="{i18n>materialLabel}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>materialDescriptionLabel}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>quantityLabel}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>positionLabel}" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="{i18n>posicaoDestinoLabel}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="idColumnListItem" type="Navigation" press="onColumnListItemPress">
+                        <cells>
+                            <Text text="{ path: 'ListItemsModel>Material',
+                                          formatter: '.formatter.removeLeadingZeros'}"/>
+                            <Text text="{ListItemsModel>MaterialShortText}"/>
+                            <Text text="{
+                                    parts: [
+                                        'ListItemsModel>QtyToMove_AltUoM'
+                                    ],
+                                    formatter: '.formatter.formatQuantity'
+                                } {ListItemsModel>/AltUoM}"/>
+                            <Text text="{ListItemsModel>SourceBin}"/>
+                            <Text text="{ListItemsModel>DestBin}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

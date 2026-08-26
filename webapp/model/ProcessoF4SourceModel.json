@@ -1,0 +1,17 @@
+{
+  "ProcessoCollection": [
+    {
+      "name": "Retirada",
+      "key": "Retirada"
+    },
+    {
+      "name": "Transporte",
+      "key": "Transporte"
+    },
+
+    {
+      "name": "Ret + Transp",
+      "key": "Ret + Transp"
+    }
+  ]
+}

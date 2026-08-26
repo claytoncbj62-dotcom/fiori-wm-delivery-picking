@@ -1,0 +1,67 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:f="sap.f"
+>
+    <Dialog
+        showHeader="false"
+        verticalScrolling="false"
+        contentHeight="80%"
+        contentWidth="50%">
+        <f:DynamicPage
+            class="sapUiNoContentPadding"
+            showFooter="true">
+            <f:title>
+                <f:DynamicPageTitle>
+                    <f:heading>
+                        <Title
+                            text="{i18n>QtdDialogTitle}" />
+                    </f:heading>
+                </f:DynamicPageTitle>
+            </f:title>
+            <f:content>
+
+
+                <form:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout">
+                    <c:Title
+                        text="{i18n>QtdSeparationTitle}" />
+                    <VBox>
+                        <Label
+                            text="{i18n>QtdDialogLabelStorageLabel}"
+                            required="true" />
+                        <Input
+                            placeholder="{i18n>QtdDialogPlaceholder}"
+                            value="{DetailsPageModel>/QtyStorage}"
+                            valueState="{DetailsPageModel>/QtyStorageValueState}"
+                            liveChange="onQtyStorageInputLiveChange"
+                            required="true"
+                            width="65%" />
+
+                    </VBox>
+
+                    <VBox>
+                        <Label text="{i18n>unitMeasureLabel}" />
+                        <Text
+                            text="{TOItemDetailsModel>/BaseUoM}"
+                            class="sapUiTinyMarginBottom" />
+                    </VBox>
+
+                </form:SimpleForm>
+
+            </f:content>
+
+            <f:footer>
+                <OverflowToolbar>
+                    <ToolbarSpacer />
+                    <Button
+                        text="{i18n>confirmButtonLabel}"
+                        type="Emphasized"
+                        press="onConfirmQtdStorageButtonPress" />
+                </OverflowToolbar>
+            </f:footer>
+        </f:DynamicPage>
+    </Dialog>
+</c:FragmentDefinition>

@@ -1,0 +1,79 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zfc.wm.zwmpicking
+type: application
+framework:
+  name: SAPUI5
+  version: 1.122.0
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.f
+    - name: sap.suite.ui.generic.template
+    - name: sap.ui.comp
+    - name: sap.ui.generic.app
+    - name: sap.ui.table
+    - name: sap.ushell
+    - name: themelib_sap_horizon
+server:
+  customMiddleware:
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        backend:
+          - url: http://fcdestd51.de.faber-castell.local:8010
+            client: '010'
+            path: /sap
+          - url: http://fcdestd51.de.faber-castell.local:8010
+            client: '010'
+            path: /sap/opu/odata/sap/ZI_WM_STOCK_CDS/
+          - url: http://fcdestq51.de.faber-castell.local:8012
+            client: '010'
+            path: /sap/opu/odata/sap/ZUI_WM_PICK_CONF_O2/
+          - url: http://fcdestq51.de.faber-castell.local:8012
+            client: '010'
+            path: /sap/opu/odata/sap/ZI_CA_PARAM_CDS/
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: zfc.wm.zwmpicking
+        ui5Theme: sap_horizon
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/ZC_WM_TOITEM_GROUP_PICKING_CDS
+            metadataPath: ./webapp/localService/mainService/metadata.xml
+            mockdataPath: ./webapp/localService/mainService/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZI_WM_STOCK_CDS
+            metadataPath: ./webapp/localService/ZI_WM_STOCK_CDS/metadata.xml
+            mockdataPath: ./webapp/localService/ZI_WM_STOCK_CDS/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZUI_WM_PICK_CONF_O2
+            metadataPath: ./webapp/localService/ZUI_WM_PICK_CONF_O2/metadata.xml
+            mockdataPath: ./webapp/localService/ZUI_WM_PICK_CONF_O2/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZI_CA_PARAM_CDS
+            metadataPath: ./webapp/localService/ZI_CA_PARAM_CDS/metadata.xml
+            mockdataPath: ./webapp/localService/ZI_CA_PARAM_CDS/data
+            generateMockData: true
+        annotations:
+          - localPath: ./webapp/localService/mainService/ZC_WM_TOITEM_GROUP_PICKING_C_VAN.xml
+            urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_WM_TOITEM_GROUP_PICKING_C_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/ZI_WM_STOCK_CDS/ZI_WM_STOCK_CDS_VAN.xml
+            urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZI_WM_STOCK_CDS_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/ZUI_WM_PICK_CONF_O2/ZUI_WM_PICK_CONF_O2_VAN.xml
+            urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUI_WM_PICK_CONF_O2_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/ZI_CA_PARAM_CDS/ZI_CA_PARAM_CDS_VAN.xml
+            urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZI_CA_PARAM_CDS_VAN',Version='0001')/$value/

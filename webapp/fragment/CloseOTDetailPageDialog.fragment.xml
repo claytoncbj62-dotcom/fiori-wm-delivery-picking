@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:form="sap.ui.layout.form"
+  core:ComponentSupport.controllerExtension="true"
+>
+  <Dialog
+    title="{i18n>QtdDialogTitle}"
+    class="sapUiResponsiveContentPadding">
+    <content>
+      <form:SimpleForm
+        editable="true">
+        <HBox>
+          <core:Icon
+            src="sap-icon://information">
+            <core:layoutData>
+              <FlexItemData growFactor="1" />
+            </core:layoutData>
+          </core:Icon>
+          <Text
+            text="{i18n>closeOTDialogMessage}"
+          />
+        </HBox>
+      </form:SimpleForm>
+    </content>
+    <beginButton>
+      <Button
+        text="{i18n>confirmButtonLabel}"
+        type="Emphasized"
+        press="onCloseTOButtonPress" />
+    </beginButton>
+    <endButton>
+      <Button
+        text="{i18n>cancelButtonLabel}"
+        press="onCloseButtonPress"
+      />
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

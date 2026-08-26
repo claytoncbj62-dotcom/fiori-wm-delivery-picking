@@ -1,0 +1,290 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "zfc.wm.zwmpicking",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.14.1",
+      "toolsId": "01299e66-e652-47fc-aa0e-95af2f881150"
+    },
+    "dataSources": {
+      "ProcessoF4SourceModel": {
+        "uri": "model/ProcessoF4SourceModel.json",
+        "type": "JSON"
+      },
+      "DetailsPageSourceModel": {
+        "uri": "model/DetailsPageSourceModel.json",
+        "type": "JSON"
+      },
+      "ZC_WM_TOITEM_GROUP_PICKING_C_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_WM_TOITEM_GROUP_PICKING_C_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZC_WM_TOITEM_GROUP_PICKING_C_VAN.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZC_WM_TOITEM_GROUP_PICKING_CDS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZC_WM_TOITEM_GROUP_PICKING_C_VAN"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZI_WM_STOCK_CDS_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZI_WM_STOCK_CDS_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/ZI_WM_STOCK_CDS/ZI_WM_STOCK_CDS_VAN.xml"
+        }
+      },
+      "ZI_WM_STOCK_CDS": {
+        "uri": "/sap/opu/odata/sap/ZI_WM_STOCK_CDS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZI_WM_STOCK_CDS_VAN"
+          ],
+          "localUri": "localService/ZI_WM_STOCK_CDS/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZUI_WM_PICK_CONF_O2_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUI_WM_PICK_CONF_O2_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/ZUI_WM_PICK_CONF_O2/ZUI_WM_PICK_CONF_O2_VAN.xml"
+        }
+      },
+      "ZUI_WM_PICK_CONF_O2": {
+        "uri": "/sap/opu/odata/sap/ZUI_WM_PICK_CONF_O2/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZUI_WM_PICK_CONF_O2_VAN"
+          ],
+          "localUri": "localService/ZUI_WM_PICK_CONF_O2/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZI_CA_PARAM_CDS_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZI_CA_PARAM_CDS_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/ZI_CA_PARAM_CDS/ZI_CA_PARAM_CDS_VAN.xml"
+        }
+      },
+      "ZI_CA_PARAM_CDS": {
+        "uri": "/sap/opu/odata/sap/ZI_CA_PARAM_CDS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZI_CA_PARAM_CDS_VAN"
+          ],
+          "localUri": "localService/ZI_CA_PARAM_CDS/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.143.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zfc.wm.zwmpicking.i18n.i18n"
+        }
+      },
+      "SelectedTOItemGroup": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {}
+      },
+      "ProcessoF4Model": {
+        "dataSource": "ProcessoF4SourceModel",
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {}
+      },
+      "TOItemGroupModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {}
+      },
+      "TOItemModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {}
+      },
+      "TOItemGrpMatModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {}
+      },
+      "TOItemDetailsModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {}
+      },
+      "SelectedItemRowModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {}
+      },
+      "DetailsPageModel": {
+        "dataSource": "DetailsPageSourceModel",
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {}
+      },
+      "mainService": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      },
+      "ZI_WM_STOCK_CDS": {
+        "dataSource": "ZI_WM_STOCK_CDS",
+        "preload": true,
+        "settings": {}
+      },
+      "ZUI_WM_PICK_CONF_O2": {
+        "dataSource": "ZUI_WM_PICK_CONF_O2",
+        "preload": true,
+        "settings": {}
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      },
+      "ZI_CA_PARAM_CDS": {
+        "dataSource": "ZI_CA_PARAM_CDS",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "zfc.wm.zwmpicking.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteView",
+          "pattern": ":?query:",
+          "target": [
+            "TargetView"
+          ]
+        },
+        {
+          "name": "ItemDetails",
+          "pattern": "itemDetails/{Warehouse}/{TransferOrder}/{Item}",
+          "target": [
+            "ItemDetails"
+          ]
+        },
+        {
+          "name": "ItemDetailsoGrpMat",
+          "pattern": "itemDetails/{Material}/{Plant}/{StorageLocation}/{SourceBin}/{CollectiveProcessing}/{Warehouse}/{TransferOrder}/{Item}",
+          "target": [
+            "ItemDetailsoGrpMat"
+          ]
+        },
+        {
+          "name": "ListItems",
+          "pattern": "listItems/{Warehouse}/{TransferOrder}/{Item}",
+          "target": [
+            "ListItems"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "TOItemGroupList",
+          "viewName": "TOItemGroupList"
+        },
+        "ItemDetails": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ItemDetails",
+          "viewName": "ItemDetails"
+        },
+        "ItemDetailsoGrpMat": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ItemDetails",
+          "viewName": "ItemDetails"
+        },
+         "ListItems": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ListItems",
+          "viewName": "ListItems"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "zfc.wm.zwmpicking.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}

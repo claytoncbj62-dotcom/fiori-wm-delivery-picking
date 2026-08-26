@@ -1,0 +1,123 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ndc="sap.ndc">
+    <Dialog
+        id="idVolumeDialog"
+        title="{i18n>barcodeDialogTitle}">
+        <content>
+            <form:SimpleForm
+                editable="true">
+                <VBox>
+                <ObjectStatus
+                title="{i18n>pendingQuantityLabel}"
+                state="Error"
+                text="{ parts: [ 'TOItemDetailsModel>/QtyPending_BaseUoM'], formatter: '.formatter.formatQuantity' } {TOItemDetailsModel>/AltUoM}"
+                class="sapMObjectStatusText sapUiSmallMarginBottom"/>
+                    <Label text="{i18n>barcodeLabel}" visible="{DetailsPageModel>/ShowBarcodeInput}"/>
+                    <HBox>
+                        <Input
+                            id="idBarcodeInputFieldInput"
+                            valueStateText="{i18n>BarcodeScanPlaceholder}"
+                            valueState="{DetailsPageModel>/BarcodeState}"
+                            value="{DetailsPageModel>/BarcodeInput}"
+                            editable="{DetailsPageModel>/isBarcodeInputEnabled}"
+                            placeholder="{i18n>BarcodeScanPlaceholder}"
+                            visible="{DetailsPageModel>/ShowBarcodeInput}"
+                            liveChange="onBarcodeInputInputLiveChange"
+                            submit="onConfirmTOButtonPress"
+                        />
+                        <ndc:BarcodeScannerButton
+                            scanSuccess="onBarcodeScannerButtonScanSuccess($event, 'BarcodeInput')"
+                            scanFail="onBarcodeScannerButtonScanFail"
+                            inputLiveUpdate="onBarcodeScannerButtonInputLiveUpdate($event, 'BarcodeInput')"
+                            dialogTitle="{i18n>barcodeScannerTitle}"
+                            disableBarcodeInputDialog="true"
+                            keepCameraScan="{/keepCameraScan}"
+                            class="sampleBarcodeScannerButtonWithZebraEB"
+                            visible="{DetailsPageModel>/ShowBarcodeScan}" />
+                    </HBox>
+
+                    <Label text="{i18n>materialLabel}"
+                        visible="{DetailsPageModel>/ShowMaterialInput}" />
+                    <HBox>
+                        <Input
+                            id="idMaterialInputFieldInput"
+                            valueStateText="{DetailsPageModel>/MaterialStateText}"
+                            valueState="{DetailsPageModel>/MaterialState}"
+                            value="{DetailsPageModel>/MaterialInput}"
+                            placeholder="{i18n>MaterialScanPlaceholder}"
+                            visible="{DetailsPageModel>/ShowMaterialInput}"
+                            editable="{DetailsPageModel>/isMaterialInputEnabled}"
+                            liveChange="onMaterialInputInputLiveChange"
+                            submit="onConfirmTOButtonPress"
+                        />
+                        <ndc:BarcodeScannerButton
+                            scanSuccess="onBarcodeScannerButtonScanSuccess($event, 'MaterialInput')"
+                            scanFail="onBarcodeScannerButtonScanFail"
+                            inputLiveUpdate="onBarcodeScannerButtonInputLiveUpdate($event, 'MaterialInput')"
+                            dialogTitle="{i18n>barcodeScannerTitle}"
+                            disableBarcodeInputDialog="true"
+                            keepCameraScan="{/keepCameraScan}"
+                            class="sampleBarcodeScannerButtonWithZebraEB"
+                            visible="{DetailsPageModel>/ShowMaterialScan}" />
+                    </HBox>
+
+                    <Label
+                        text="{= ${i18n>QtdDialogLabel} + ' ' + ${TOItemDetailsModel>/AltUoM} }"
+                        visible="{DetailsPageModel>/ShowQtyInput}"
+                    />
+                    <HBox>
+                        <Input
+                            id="idQuantityInputFieldInput"
+                            valueStateText="{DetailsPageModel>/qtyMismatchStateText}"
+                            valueState="{DetailsPageModel>/QuantityState}"
+                            placeholder="{i18n>QtdDialogPlaceholder}"
+                            value="{DetailsPageModel>/Quantity}"
+                            visible="{DetailsPageModel>/ShowQtyInput}"
+                            liveChange="onQuantityInputLiveChange"
+                            submit="onConfirmTOButtonPress"
+                        />
+                    </HBox>
+                    <Label text="{i18n>barcodeDestLabel}"
+                            visible="{DetailsPageModel>/ShowDestSUScan}" />
+                    <HBox>
+                        <Input
+                            id="idBarcodeDestSUInputFieldInput"
+                            valueStateText="{DetailsPageModel>/BarcodeDestSUStateText}"
+                            valueState="{DetailsPageModel>/BarcodeDestSUState}"
+                            value="{DetailsPageModel>/BarcodeDestSU}"
+                            editable="{DetailsPageModel>/isBarcodeDestSUInputEnabled}"
+                            placeholder="{i18n>BarcodeScanPlaceholder}"
+                            visible="{DetailsPageModel>/ShowDestSUScan}"
+                            liveChange="onBarcodeDestSUInputLiveChange"
+                            submit="onConfirmTOButtonPress"
+                        />
+                        <ndc:BarcodeScannerButton
+                            scanSuccess="onBarcodeScannerButtonScanSuccess($event, 'BarcodeDestSU')"
+                            scanFail="onBarcodeScannerButtonScanFail"
+                            inputLiveUpdate="onBarcodeScannerButtonInputLiveUpdate($event, 'BarcodeDestSU')"
+                            dialogTitle="{i18n>barcodeScannerTitle}"
+                            disableBarcodeInputDialog="true"
+                            keepCameraScan="{/keepCameraScan}"
+                            class="sampleBarcodeScannerButtonWithZebraEB"
+                            visible="{DetailsPageModel>/ShowDestSUScan}" />
+                    </HBox>
+                </VBox>
+            </form:SimpleForm>
+        </content>
+        <beginButton>
+            <Button
+                text="{i18n>confirmOTLabel}"
+                type="Emphasized"
+                press="onConfirmTOButtonPress" />
+        </beginButton>
+        <endButton>
+            <Button
+                text="{i18n>cancelLabel}"
+                press="onCancelButtonPress"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,310 @@
+<mvc:View
+    controllerName="zfc.wm.zwmpicking.controller.ItemDetails"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form">
+    <f:DynamicPage id="idDynamicPage" fitContent="true" busy="{DetailsPageModel>/busy}"
+        headerExpanded="true" showFooter="true">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>itemDetailsTitle}" />
+                </f:heading>
+                <f:actions>
+                    <Button
+                        icon="sap-icon://nav-back"
+                        text="{i18n>backButtonLabel}"
+                        press="onBackButtonPress"
+                        type="Transparent" />
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <!-- FlexBox para exibir as informações principais do item, visível em mobile -->
+                <FlexBox wrap="Wrap" alignItems="Start" visible="{device>/system/phone}">
+                    <items>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus
+                                title="{i18n>materialLabel}"
+                                text="{
+                                    path: 'TOItemDetailsModel>/Material',
+                                    formatter: '.formatter.removeLeadingZeros'
+                                }"
+                            />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus
+                                title="{i18n>lotNumberLabel}"
+                                text="{TOItemDetailsModel>/Batch}"
+                            />
+                        </VBox>
+
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus
+                                title="{i18n>positionLabel}"
+                                text="{TOItemDetailsModel>/SourceBin}"
+                            />
+                        </VBox>
+
+                    </items>
+                </FlexBox>
+                <FlexBox wrap="Wrap" alignItems="Start" visible="{device>/system/phone}">
+                    <items>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus
+                                title="{i18n>quantityValueLabel}"
+                                class="sapMObjectStatusText"
+                                text="{
+                                    parts: [
+                                        'TOItemDetailsModel>/QtySend_AltUoM'
+                                    ],
+                                    formatter: '.formatter.formatQuantity'
+                                } {TOItemDetailsModel>/AltUoM}"
+                            />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus
+                                title="{i18n>pendingQuantityLabel}"
+                                state="Error"
+                                class="sapMObjectStatusText"
+                                text="{
+                                    parts: [
+                                        'TOItemDetailsModel>/QtyPending_BaseUoM'
+                                    ],
+                                    formatter: '.formatter.formatQuantity'
+                                } {TOItemDetailsModel>/AltUoM}"
+                            />
+                        </VBox>
+                    </items>
+                </FlexBox>
+                <!-- Segunda linha do header para exibir mais informações, visível apenas em desktop -->
+                <FlexBox wrap="Wrap" alignItems="Start" visible="{= !${device>/system/phone} }">
+                    <items>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <!-- <ObjectStatus title="{i18n>numeroRemessaLabel}"
+                                text="{TOItemDetailsModel>/PurchaseOrder}" /> -->
+                            <ObjectStatus title="{i18n>numeroRemessaLabel}"
+                                text="{TOItemDetailsModel>/PurchaseOrderSeql}" />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus title="{i18n>agrupamentoArmazemLabel}"
+                                text="{TOItemDetailsModel>/StorageUnit}" />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus title="{i18n>tpMovLabel}"
+                                text="{TOItemDetailsModel>/TransferCat}" />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus title="{i18n>processoLabel}"
+                                text="{TOItemDetailsModel>/Processo}" />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus title="{i18n>otLabel}"
+                                text="{TOItemDetailsModel>/TransferOrder}" />
+                        </VBox>
+                    </items>
+                </FlexBox>
+                <FlexBox wrap="Wrap" alignItems="Start" visible="{= !${device>/system/phone} }">
+                    <items>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus
+                                title="{i18n>quantityLabel}"
+                                text="{
+                                    parts: [
+                                        'TOItemDetailsModel>/QtyToMove_AltUoM'
+                                    ],
+                                    formatter: '.formatter.formatQuantity'
+                                } {TOItemDetailsModel>/AltUoM}"
+                                state="Success"
+                                class="sapMObjectStatusText"
+                            />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginEnd sapUiSmallMarginBottom">
+                            <ObjectStatus
+                                title="{i18n>pendingQuantityLabel}"
+                                state="Error"
+                                class="sapMObjectStatusText"
+                                text="{
+                                    parts: [
+                                        'TOItemDetailsModel>/QtyPending_BaseUoM'
+                                    ],
+                                    formatter: '.formatter.formatQuantity'
+                                } {TOItemDetailsModel>/AltUoM}"
+                            />
+                        </VBox>
+                    </items>
+                </FlexBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox>
+                <Panel class="whiteBackgroundPanel" backgroundDesign="Solid" visible="{= !${device>/system/phone} }">
+                    <VBox class="sapUiSmallMargin">
+                        <form:SimpleForm
+                            editable="false"
+                            layout="ColumnLayout"
+                            columnsM="2"
+                            columnsL="3"
+                            columnsXL="3">
+                            <form:content>
+                                <core:Title text="{i18n>materialLabel}" />
+                                <Label text="{i18n>materialNumberLabel}" />
+                                <Text text="{
+                                        path: 'TOItemDetailsModel>/Material',
+                                        formatter: '.formatter.removeLeadingZeros'
+                                    }"
+                                    class="sapUiTinyMarginBottom" />
+                                <Label text="{i18n>materialDescriptionLabel}" />
+                                <Text text="{TOItemDetailsModel>/MaterialShortText}"
+                                    class="sapUiTinyMarginBottom" />
+                                <core:Title text="{i18n>lotLabel}" />
+                                <Label text="{i18n>lotNumberLabel}" />
+                                <Text text="{TOItemDetailsModel>/Batch}"
+                                    class="sapUiTinyMarginBottom" />
+                                <Label text="{i18n>validityLabel}" />
+                                <Text
+                                    text="{
+                                                path: 'TOItemDetailsModel>/ExpirationDate',
+                                                formatter: '.formatter.formatDateToDDMMYYYY'                          
+                                            }"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <Label text="{i18n>quantityValueLabel}" />
+                                <Text
+                                class="sapUiTinyMarginBottom"
+                                    text="{
+                                    parts: [
+                                        'TOItemDetailsModel>/QtySend_AltUoM'
+                                    ],
+                                    formatter: '.formatter.formatQuantity'
+                                }" />
+                                <!-- text="{TOItemDetailsModel>/QtySend_AltUoM}" -->
+
+                                <core:Title text="{i18n>originValueLabel}" />
+                                <Label text="{i18n>origemTipoLabel}" />
+                                <Text text="{TOItemDetailsModel>/SourceStorageType}"
+                                    class="sapUiTinyMarginBottom" />
+                                <Label text="{i18n>positionLabel}" />
+                                <Text text="{TOItemDetailsModel>/SourceBin}"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <core:Title text="{i18n>destinoLabel}" />
+                                <Label text="{i18n>destinoTipoLabel}" />
+                                <Text
+                                    text="{TOItemDetailsModel>/DestStorageType}"
+                                    class="sapUiTinyMarginBottom" />
+                                <Label text="{i18n>posicaoDestinoLabel}" />
+                                <Text text="{TOItemDetailsModel>/DestBin}"
+                                    class="sapUiTinyMarginBottom" />
+                            </form:content>
+                        </form:SimpleForm>
+                    </VBox>
+                </Panel>
+                <Panel class="whiteBackgroundPanel" backgroundDesign="Solid" visible="{device>/system/phone}">
+                    <VBox class="sapUiSmallMargin">
+                        <form:SimpleForm
+                            editable="false"
+                            layout="ResponsiveGridLayout"
+                            columnsM="1"
+                            columnsL="1"
+                            columnsXL="1">
+                            <form:content>
+                                <core:Title text="{i18n>itemDetailsTitle}" />
+
+                                <Label text="{i18n>numeroRemessaLabel}" />
+                                <Text text="{TOItemDetailsModel>/PurchaseOrderSeql}"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <Label text="{i18n>agrupamentoArmazemLabel}" />
+                                <Text text="{TOItemDetailsModel>/StorageUnit}"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <Label text="{i18n>tpMovLabel}" />
+                                <Text text="{TOItemDetailsModel>/TransferCat}"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <Label text="{i18n>processoLabel}" />
+                                <Text text="{TOItemDetailsModel>/Processo}"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <Label text="{i18n>otLabel}" />
+                                <Text text="{TOItemDetailsModel>/TransferOrder}"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <Label text="{i18n>materialDescriptionLabel}" />
+                                <Text text="{TOItemDetailsModel>/MaterialShortText}"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <Label text="{i18n>validityLabel}" />
+                                <Text
+                                    text="{
+                                        path: 'TOItemDetailsModel>/ExpirationDate',
+                                        formatter: '.formatter.formatDateToDDMMYYYY'
+                                    }"
+                                    class="sapUiTinyMarginBottom" />
+
+                        <Label text="{i18n>quantityLabel}" />
+                            <ObjectStatus
+                                text="{
+                                    parts: [
+                                        'TOItemDetailsModel>/QtyToMove_AltUoM'
+                                    ],
+                                    formatter: '.formatter.formatQuantity'
+                                } {TOItemDetailsModel>/AltUoM}"
+                                state="Success"
+                                class="sapMObjectStatusText"
+                            />
+
+                                <Label text="{i18n>origemTipoLabel}" />
+                                <Text text="{TOItemDetailsModel>/SourceStorageType}"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <Label text="{i18n>destinoTipoLabel}" />
+                                <Text text="{TOItemDetailsModel>/DestStorageType}"
+                                    class="sapUiTinyMarginBottom" />
+
+                                <Label text="{i18n>posicaoDestinoLabel}" />
+                                <Text text="{TOItemDetailsModel>/DestBin}"
+                                    class="sapUiTinyMarginBottom" />
+                            </form:content>
+                        </form:SimpleForm>
+                    </VBox>
+                </Panel>
+            </VBox>
+        </f:content>
+        <f:footer>
+            <OverflowToolbar id="idOverflowToolbar">
+                <ToolbarSpacer />
+                <Button
+                    text="{i18n>stockButtonLabel}"
+                    type="Emphasized"
+                    class="sapUiSmallMarginEnd"
+                    press="onStockButtonPress" />
+                <Button
+                    text="{i18n>confirmButtonLabel}"
+                    type="Emphasized"
+                    class="sapUiSmallMarginEnd"
+                    press="onConfirmButtonPress"
+                />
+                <Button
+                    text="{i18n>closeOTButtonLabel}"
+                    type="Emphasized"
+                    class="sapUiSmallMarginEnd"
+                    press="onCloseTOButtonPress"
+                    visible="false"
+                />
+                <Button
+                    text="{i18n>quantityButtonLabel}"
+                    type="Emphasized"
+                    class="sapUiSmallMarginEnd"
+                    enabled="{= ${TOItemDetailsModel>/QtySend_AltUoM} > 0}"
+                    visible="{= ${TOItemDetailsModel>/TransferCat} === 'E' ? false : false }"
+                    press="onQuantityButtonPress" />
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>
