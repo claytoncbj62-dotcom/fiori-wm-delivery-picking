@@ -19,6 +19,6 @@ builder:
         app:
           name: ZUI_WM_PICKING
           package: ZBR_EY_UI5_WM004
-          transport: D51K921236
+          transport: D51K921346
         exclude:
           - /test/

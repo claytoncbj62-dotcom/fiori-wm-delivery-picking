@@ -1952,8 +1952,8 @@ sap.ui.define(
           // Reseta o modelo da página de detalhes
           this._resetDetailsPageModel();
 
-          // Atualiza o modelo do item atual
-          oFirstItemModel.setData(oNextItem);
+          // Carrega o próximo item com as quantidades sumarizadas do grupo de material (quando aplicável)
+          await this._applyNextItemDetails(oNextItem);
 
           // Atualiza a view com os novos dados
           this.getView().getModel("TOItemDetailsModel").refresh(true);
@@ -1966,6 +1966,60 @@ sap.ui.define(
           oRouter.navTo("RouteView", {}, { replace: true });
         }
       },
+      /**
+       * Loads the next item into the details model.
+       *
+       * For non-fractional items, resolves the summarized material group entry
+       * (same logic as manual entry) so grouped quantities are shown correctly;
+       * otherwise falls back to the single item. Keeps the current route context
+       * in sync so the following confirmation uses the matching flow.
+       */
+      _applyNextItemDetails: async function (oNextItem) {
+        const oFirstItemModel = this.getOwnerComponent().getModel("TOItemDetailsModel");
+        const oSelectedItemRowModel = this.getOwnerComponent().getModel("SelectedItemRowModel");
+        const oSelectedGroupModel = this.getOwnerComponent().getModel("SelectedTOItemGroup");
+        const oSelectedGroup = oSelectedGroupModel ? oSelectedGroupModel.getData() : null;
+
+        if (oNextItem && !oNextItem.IsFractional) {
+          var sCollectiveProcessing =
+            (oSelectedGroup && oSelectedGroup.CollectiveProcessing) || oNextItem.CollectiveProcessing;
+
+          var aFiltersGrpMat = [
+            new Filter("Processo", FilterOperator.EQ, oNextItem.Processo),
+            new Filter("Material", FilterOperator.EQ, oNextItem.Material),
+            new Filter("StorageLocation", FilterOperator.EQ, oNextItem.StorageLocation),
+            new Filter("Plant", FilterOperator.EQ, oNextItem.Plant),
+            new Filter("Batch", FilterOperator.EQ, oNextItem.Batch),
+            new Filter("SpecialStock", FilterOperator.EQ, oNextItem.SpecialStock),
+            new Filter("SourceStorageType", FilterOperator.EQ, oNextItem.SourceStorageType),
+            new Filter("SourceBin", FilterOperator.EQ, oNextItem.SourceBin),
+            new Filter("CollectiveProcessing", FilterOperator.EQ, sCollectiveProcessing),
+          ];
+
+          try {
+            var oGrpMat = await this._getTOItensGrpMat(aFiltersGrpMat);
+            if (oGrpMat && oGrpMat.success && oGrpMat.data && oGrpMat.count > 1) {
+              var oGrpMatData = Array.isArray(oGrpMat.data) ? oGrpMat.data[0] : oGrpMat.data;
+              oFirstItemModel.setData(oGrpMatData);
+              if (oSelectedItemRowModel) {
+                oSelectedItemRowModel.setData(oNextItem);
+              }
+              this._sCurrentRouteName = "ItemDetailsoGrpMat";
+              return;
+            }
+          } catch (oError) {
+            // Em caso de falha na sumarização, segue com o item individual abaixo
+          }
+        }
+
+        // Fluxo de item individual
+        oFirstItemModel.setData(oNextItem);
+        if (oSelectedItemRowModel) {
+          oSelectedItemRowModel.setData(oNextItem);
+        }
+        this._sCurrentRouteName = "ItemDetails";
+      },
+
       /**
        * Moves workflow to the next item and keeps lock state consistent.
        *
