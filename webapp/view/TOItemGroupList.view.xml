@@ -46,7 +46,7 @@
                                 groupName="Group1"
                                 visibleInFilterBar="true">
                                 <fb:control>
-                                    <Input />
+                                    <Input submit="onPurchaseOrderSubmit" />
                                 </fb:control>
                             </fb:FilterGroupItem>
                         </fb:filterGroupItems>

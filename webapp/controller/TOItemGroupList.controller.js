@@ -115,6 +115,10 @@ sap.ui.define([
                 }
             },
 
+            onPurchaseOrderSubmit: function () {
+                this.byId("idFilterBar").search();
+            },
+
             onFilterBarFilterChange: function (oEvent) {
                 // This event is triggered when a filter value changes
                 // You can add custom logic here if needed
